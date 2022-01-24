@@ -311,7 +311,7 @@ class NewEgg:
         WebDriverWait(self.browser, 10).until(
             lambda x: "Newegg.com Shopping Cart" in self.browser.title
         )
-        checkout_btn = self.browser.find_element_by_xpath('//*[@id="app"]/div[1]/section/div/div/form/div[2]/div[3]/div/div/div[3]/div/button')
+        checkout_btn = self.browser.find_element_by_xpath('//*[@id="app"]/div[2]/section/div/div/form/div[2]/div[3]/div/div/div[3]/div/button')
         if not checkout_btn.is_enabled():
             self.monitor()
         time.sleep(.1)
@@ -322,7 +322,7 @@ class NewEgg:
             self.browser.add_cookie(cookie)
         self.status_signal.emit(create_msg("Cookies loaded", "normal"))
         self.browser.get("https://secure.newegg.com/global/sa-en/Shop/Cart?submit=view")
-        wait(self.browser, self.LONG_TIMEOUT).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[1]/section/div/div/form/div[2]/div[3]/div/div/div[3]/div/button'))).click()
+        wait(self.browser, self.LONG_TIMEOUT).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[2]/section/div/div/form/div[2]/div[3]/div/div/div[3]/div/button'))).click()
         time.sleep(2)
         if self.browser.title == "Newegg.com Sign In":
             self.status_signal.emit(create_msg("Login page found logging in", "normal"))
