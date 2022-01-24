@@ -6,6 +6,8 @@ pipenv install
 
 pip-compile --generate-hashes --no-index --output-file=requirements.txt requirements.in
 
+pip install -r requirements.txt
+
 
 
 
