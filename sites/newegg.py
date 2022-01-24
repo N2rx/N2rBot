@@ -362,7 +362,7 @@ class NewEgg:
 
         try:
             if self.browser.title == "Newegg.com Shopping Cart":
-                wait(self.browser, 6).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[1]/section/div/div/form/div[2]/div[3]/div/div/div[3]/div/button'))).click()
+                wait(self.browser, 6).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[2]/section/div/div/form/div[2]/div[3]/div/div/div[3]/div/button'))).click()
         except (TimeoutException, NoSuchElementException,
                 StaleElementReferenceException) as e:
                 pass
