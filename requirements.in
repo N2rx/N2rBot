@@ -1,4 +1,11 @@
 pyqt5==5.15.4
+pyqt5-sip==12.9.0
+PyQt5-Qt5==5.15.2
+urllib3==1.25.11
+tzlocal==4.0.2
+tzdata==2021.5
+soupsieve==2.2.1
+six==1.16.0
 js2py==0.70
 lxml==4.6.3
 beautifulsoup4==4.9.3
@@ -7,7 +14,9 @@ darkdetect==0.2.0
 colorama==0.4.4
 selenium==3.141.0
 chromedriver-py==97.0.4692.71
-pycryptodome
+pycryptodome==3.11.0
+click==8.0.3
+colorama==0.4.4
 webdriver_manager==3.3.0
 pip-tools==5.5.0
 requests==2.25.1
