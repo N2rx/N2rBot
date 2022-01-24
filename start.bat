@@ -1,1 +1,1 @@
-cmd /k pipenv run python app.py
+python app.py
