@@ -231,7 +231,7 @@ class NewEggcombo:
         url = "https://www.newegg.com/global/sa-en/Product/ComboDealDetails?ItemList={}".format(
             self.sku_id
         )
-        # TODO: Add random delay configuration
+        
         response = self.session.get(url, headers=DEFAULT_HEADERS)
         self.status_signal.emit(create_msg(f"Stock check response code: {response.status_code} {url}", "normal"))
         if response.status_code == 400:
@@ -240,11 +240,11 @@ class NewEggcombo:
             self.status_signal.emit(create_msg(f"Error page: {response.status_code} {url}", "error"))
         try:
             soup = BeautifulSoup(response.text, 'html.parser')
-            in_stock_divs = soup.find("a", {"class": "atnPrimary"})  # <--- change "text" to div
+            in_stock_divs = soup.find("a", {"class": "atnPrimary"})  
             self.status_signal.emit(create_msg(f"Button Status: {in_stock_divs}", "normal"))
             if "<h2>Are you a human?</h2>" in response.text:
                 self.status_signal.emit(create_msg(f"Error page: Captcha detected {url}", "error"))
-            if "atnPrimary" in response.text: #TODO: Make this case insensitive
+            if "atnPrimary" in response.text: 
                 self.status_signal.emit(create_msg("Item is in stock!", "normal"))
                 return True
             else:
