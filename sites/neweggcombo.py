@@ -271,15 +271,15 @@ class NewEggcombo:
 
         while not in_stock:
             try: 
-                wait(self.browser, random_delay(self.monitor_delay, settings.random_delay_start, settings.random_delay_stop)).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="synopsis"]/div[2]/div[2]/div/div[1]/div/div[3]/a')))
-                add_to_cart_btn = self.browser.find_element_by_xpath('//*[@id="synopsis"]/div[2]/div[2]/div/div[1]/div/div[3]/a')
+                wait(self.browser, random_delay(self.monitor_delay, settings.random_delay_start, settings.random_delay_stop)).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ProductBuy"]/div/div[2]/button')))
+                add_to_cart_btn = self.browser.find_element_by_xpath('//*[@id="ProductBuy"]/div/div[2]/button')
                 if not image_found:
                     self.product_image = self.browser.find_element_by_xpath("//meta[@property='og:image']").get_attribute("content")
                     self.image_signal.emit(self.product_image)
                     image_found = True
                 add_to_cart_btn.click()
                 time.sleep(.5)
-                if not self.browser.current_url == "https://secure.newegg.com/global/sa-en/Shop/Cart?submit=view":
+                if not add_to_cart_btn.is_enabled():
                     self.status_signal.emit(create_msg("Waiting For Restock", "normal"))
                     self.browser.execute_script("location.reload(true);")
                     continue
@@ -290,6 +290,7 @@ class NewEggcombo:
                     
                 in_stock = True
                 self.status_signal.emit(create_msg("Adding to cart", "normal"))
+                self.browser.get("https://secure.newegg.com/global/sa-en/Shop/Cart?submit=view")
                 self.add_to_cart()
             except:
                 if not self.browser.current_url == "https://secure.newegg.com/global/sa-en/Shop/Cart?submit=view":
